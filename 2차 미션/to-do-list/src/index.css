@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Hahmlet:wght@300&family=Sansita+Swashed:wght@500&display=swap');
+
+body {
+  font-family: 'Hahmlet', serif;
+  background-color: #8EB695;
+}
+
+h1{
+  text-align: center;
+  font-family: 'Sansita Swashed', cursive;
+}
