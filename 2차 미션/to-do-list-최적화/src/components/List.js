@@ -3,14 +3,6 @@ import React from 'react'
 
 export default function List({todoData, setTodoData}) {
 
-  const btnStyle = {
-    color: "gray",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-    float: "right",
-  };
-  
   const completedChange = (key) => {
     let newTodoData = todoData.map(data => {
       if(data.id === key){
@@ -20,14 +12,7 @@ export default function List({todoData, setTodoData}) {
     })
     setTodoData(newTodoData);
   };
-  const getStyle = (completed) => {
-    return{
-      padding: "10px",
-      borderBottom: "1px #EFF4E7 solid",
-      textDecoration: completed ? "line-through" : "none",
-      verticalAlign: 'middle',
-    }
-  };
+
   const deleteClick = (key) => {
     let newTodoData = todoData.filter(data => data.id !== key);
     setTodoData(newTodoData);
@@ -41,11 +26,22 @@ export default function List({todoData, setTodoData}) {
   return (
     <div>
       {todoData.map((data) => (
-          <section style={getStyle(data.completed)} key={data.id}>
-            <input type="checkbox" defaultChecked={false} style={inputStyle} onChange = {() => completedChange(data.id)}/>
-            {data.title}
-            <button style={btnStyle} onClick={() => deleteClick(data.id)}>✖</button>
-          </section>
+          <article key={data.id}>
+            <div className='flex items-center justify-between w-full px-4 py-1 my-2  border-white border-2 rounded'>
+              
+              <div className='items-center'>
+                <input type="checkbox" defaultChecked={false} style={inputStyle} onChange = {() => completedChange(data.id)}/>
+                <span className= {data.completed ? "line-through" : undefined}>
+                  {data.title}
+                </span>
+              </div>
+
+              <div className='items-center p-2 rounded cursor-pointer hover:bg-red-200'>
+                <button onClick={() => deleteClick(data.id)}>✖</button>
+              </div>
+
+            </div>
+          </article>
           ))}
     </div>
   )

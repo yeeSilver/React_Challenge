@@ -7,20 +7,20 @@ export default function Form({value, setValue, addClick}) {
   }
   return (
     <div>
-      <form style={{display: "flex", marginTop: "10px"}} onSubmit={addClick}>
+      <form className='flex mt-5' onSubmit={addClick}>
             <input 
               type = "text"
               name = "value"
-              style = {{ flex: "15", padding: "5px", border: "none"}}
+              className='w-full flex-15 p-5 border-none  rounded'
               placeholder = "HEY, what you gonna do?"
               fontFamily = "font-family: 'Hahmlet', serif;"
               value = {value}
               onChange={printClick}/>
+
               <input 
               type = "submit"
-              value = "➕"
-              className = "submitBtn"
-              style = {{flex: 1, marginLeft:"2px", backgroundColor: "gold", borderRadius: "5px", border: "none", cursor: "pointer"}}/>
+              className='rounded p-2 ml-2 hover:bg-orange-300 cursor-pointer'
+              value = "➕"/>
           </form>
     </div>
   )
