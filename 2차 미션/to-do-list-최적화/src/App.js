@@ -22,7 +22,7 @@ export default function App() {
       <div className="flex items-center justify-center w-screen h-screen">
         <main className="formbox w-full p-6 m-4 rounded shadow-sm lg:w-3/4 lg:max-w-lg">
           {/* lg:max-w-lg => max-width: 32rem 라지 사이즈일때 32rem을 넘지 않게 함.*/}
-          <div className="flex justify-between mb-3">
+          <div className="flex justify-center mb-5">
           <h1 className="text-3xl"> 
             💡 To Do List 💡
           </h1>
