@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Form({value, setValue, addClick}) {
-  console.log('form랜더링');
+  // console.log('form랜더링');
   const printClick = (e) => {
     setValue(e.target.value);
   }

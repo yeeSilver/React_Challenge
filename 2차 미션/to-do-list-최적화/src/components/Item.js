@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Item = React.memo(({ id, title, completed, todoData, setTodoData, provided, snapshot, deleteClick}) => {
-  console.log('아이템 컴포넌트');
+  // console.log('아이템 컴포넌트');
   const completedChange = (id) => {
     let newTodoData = todoData.map(data => {
       if(data.id === id){
@@ -30,8 +30,7 @@ const Item = React.memo(({ id, title, completed, todoData, setTodoData, provided
           <input type="checkbox" onChange = {() => completedChange(id)} defaultChecked={completed} style={inputStyle} />
           {/* defaultchecked가 completed인건 강사님, 나는 false같은데. */}
 
-          {/* <span className= {`${completed ? "line-through" : undefined} ml-2`}> */}
-          <span className= {completed ? "line-through" : undefined}> 
+          <span className= {`${completed ? "line-through" : undefined} ml-2`}>
             {title}
           </span>
         </div>
