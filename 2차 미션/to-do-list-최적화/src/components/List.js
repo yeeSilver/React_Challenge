@@ -1,12 +1,13 @@
-//rfc 함수형 컴포넌트
+//rfc 함수형 컴포넌트 rafc 에로우펑션
 import React from 'react'
 import { Draggable } from 'react-beautiful-dnd';
 import { Droppable } from 'react-beautiful-dnd';
 import { DragDropContext } from 'react-beautiful-dnd';
 import Item from './Item';
 
-export default function List({todoData, setTodoData}) {
 
+ const List = React.memo(({todoData, setTodoData}) => {
+  console.log('List 컴포넌트');
   const handleEnd = (result) => {
     // result에는 source항목(원래 있던 곳)과 드레그 이벤트에 대한 정보가 있음. 
     if(!result.destination) return;
@@ -20,7 +21,6 @@ export default function List({todoData, setTodoData}) {
     newTodoData.splice(result.destination.index, 0, reorderedItem);
     setTodoData(newTodoData);
   }
-
   return (
     <div>
       {/* onDragEnd는 드래그 드랍했을때 순서를 바뀌게 함. onDragEnd할 때 handleEnd함수를 실행.*/}
@@ -57,4 +57,6 @@ export default function List({todoData, setTodoData}) {
       </DragDropContext>
     </div>
   )
-}
+});
+
+export default List;

@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Item = ({ id, title, completed, todoData, setTodoData, provided, snapshot}) => {
-
+const Item = React.memo(({ id, title, completed, todoData, setTodoData, provided, snapshot}) => {
+  console.log('아이템 컴포넌트');
   const completedChange = (id) => {
     let newTodoData = todoData.map(data => {
       if(data.id === id){
@@ -18,7 +18,7 @@ const Item = ({ id, title, completed, todoData, setTodoData, provided, snapshot}
   };
   const inputStyle = {
     verticalAlign: 'middle'
-  };
+  }; 
 
   return (
     <>
@@ -45,6 +45,6 @@ const Item = ({ id, title, completed, todoData, setTodoData, provided, snapshot}
       </article>
     </>
   )
-};
+});
 
 export default Item

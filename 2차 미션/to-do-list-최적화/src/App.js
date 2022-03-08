@@ -4,6 +4,7 @@ import List from "./components/List";
 import Form from "./components/Form";
 
 export default function App() {
+  console.log('App 컴포넌트');
   const [todoData, setTodoData] = useState([]);
   const [value, setValue] = useState("");
   const addClick = (e) => {
