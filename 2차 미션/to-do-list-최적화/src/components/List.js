@@ -7,7 +7,8 @@ import Item from './Item';
 
 
  const List = React.memo(({todoData, setTodoData, deleteClick}) => {
-  // console.log('List 컴포넌트');
+
+
   const handleEnd = (result) => {
     // result에는 source항목(원래 있던 곳)과 드레그 이벤트에 대한 정보가 있음. 
     if(!result.destination) return;
@@ -28,31 +29,32 @@ import Item from './Item';
         <Droppable droppableId='todo'>
           {(provided) => (
             // Droppable을 사용해서 Droppable에서 주는 정보를 div에 전달. 
-            <div {...provided.droppableProps} ref={provided.innerRef}>
-              {todoData.map((data,index) => (
-                <Draggable 
-                  key={data.id}
-                  draggableId={data.id.toString()}
-                  index={index}
-                >    
-                  {(provided, snapshot) => (
-                    <Item 
+
+                <div {...provided.droppableProps} ref={provided.innerRef}>
+                  {todoData.map((data,index) => (
+                    <Draggable 
                       key={data.id}
-                      id={data.id}
-                      title={data.title}
-                      completed={data.completed}
-                      todoData={todoData}
-                      setTodoData={setTodoData}
-                      provided={provided}
-                      snapshot={snapshot}
-                      deleteClick={deleteClick}
-                    />
-                  )}
-                </Draggable>
-              ))}
-              {/* provide.placeholder는 element를 드래그해서 위로 올릴 수 있게 함.*/}
-              {provided.placeholder}
-            </div>
+                      draggableId={data.id.toString()}
+                      index={index}
+                    >    
+                      {(provided, snapshot) => (
+                        <Item 
+                          key={data.id}
+                          id={data.id}
+                          title={data.title}
+                          completed={data.completed}
+                          todoData={todoData}
+                          setTodoData={setTodoData}
+                          provided={provided}
+                          snapshot={snapshot}
+                          deleteClick={deleteClick}
+                        />
+                      )}
+                    </Draggable>
+                ))}
+                {/* provide.placeholder는 element를 드래그해서 위로 올릴 수 있게 함.*/}
+                {provided.placeholder}
+              </div>
           )}
         </Droppable>
       </DragDropContext>
