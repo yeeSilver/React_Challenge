@@ -1,12 +1,20 @@
-import React, {useState} from "react";
+import React, {useState, useCallback} from "react";
 import "./App.css";
 import List from "./components/List";
 import Form from "./components/Form";
+// 주로 최상위 폴더에 함수를 만든다.. 왜??
 
 export default function App() {
   console.log('App 컴포넌트');
   const [todoData, setTodoData] = useState([]);
   const [value, setValue] = useState("");
+
+  // todoData가 바뀔때만 다시 생성해줄 수 있게 useCallback
+  const deleteClick = useCallback((id) => {
+    let newTodoData = todoData.filter(data => id !== data.id);
+    setTodoData(newTodoData);
+  }, [todoData]);
+
   const addClick = (e) => {
     e.preventDefault(); //버튼 클릭시 리로드 되지 않게 하기 위함.
 
@@ -28,7 +36,7 @@ export default function App() {
             💡 To Do List 💡
           </h1>
           </div>
-          <List todoData={todoData} setTodoData={setTodoData}/>
+        <List deleteClick ={deleteClick} todoData={todoData} setTodoData={setTodoData}/>
           <Form value={value} setValue={setValue} addClick = {addClick}/>
 
         </main>

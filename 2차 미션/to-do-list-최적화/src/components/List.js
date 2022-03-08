@@ -6,7 +6,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import Item from './Item';
 
 
- const List = React.memo(({todoData, setTodoData}) => {
+ const List = React.memo(({todoData, setTodoData, deleteClick}) => {
   console.log('List 컴포넌트');
   const handleEnd = (result) => {
     // result에는 source항목(원래 있던 곳)과 드레그 이벤트에 대한 정보가 있음. 
@@ -45,6 +45,7 @@ import Item from './Item';
                       setTodoData={setTodoData}
                       provided={provided}
                       snapshot={snapshot}
+                      deleteClick={deleteClick}
                     />
                   )}
                 </Draggable>

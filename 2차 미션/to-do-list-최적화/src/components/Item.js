@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Item = React.memo(({ id, title, completed, todoData, setTodoData, provided, snapshot}) => {
+const Item = React.memo(({ id, title, completed, todoData, setTodoData, provided, snapshot, deleteClick}) => {
   console.log('아이템 컴포넌트');
   const completedChange = (id) => {
     let newTodoData = todoData.map(data => {
@@ -12,10 +12,7 @@ const Item = React.memo(({ id, title, completed, todoData, setTodoData, provided
     setTodoData(newTodoData);
   };
 
-  const deleteClick = (id) => {
-    let newTodoData = todoData.filter(data => id !== data.id);
-    setTodoData(newTodoData);
-  };
+ 
   const inputStyle = {
     verticalAlign: 'middle'
   }; 
