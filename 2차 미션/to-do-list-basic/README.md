@@ -14,7 +14,8 @@
 ### 🍎delete all
 * 전체 삭제하기
 
-![alldelete](https://user-images.githubusercontent.com/48678872/157242507-f8ef2eb8-6149-4e30-bfcf-727c366dfff1.gif)
+![deleteall](https://user-images.githubusercontent.com/48678872/157243927-3b235fab-d248-44af-bbfc-664b24bfb61a.gif)
+
 
 ### 🍎edit
 * 리스트 수정하기
