@@ -3,26 +3,9 @@ import React from 'react'
 import { Draggable } from 'react-beautiful-dnd';
 import { Droppable } from 'react-beautiful-dnd';
 import { DragDropContext } from 'react-beautiful-dnd';
+import Item from './Item';
 
 export default function List({todoData, setTodoData}) {
-
-  const completedChange = (key) => {
-    let newTodoData = todoData.map(data => {
-      if(data.id === key){
-        data.completed = !data.completed;
-      }
-      return data;
-    })
-    setTodoData(newTodoData);
-  };
-
-  const deleteClick = (key) => {
-    let newTodoData = todoData.filter(data => data.id !== key);
-    setTodoData(newTodoData);
-  };
-  const inputStyle = {
-    verticalAlign: 'middle'
-  }
 
   const handleEnd = (result) => {
     // result에는 source항목(원래 있던 곳)과 드레그 이벤트에 대한 정보가 있음. 
@@ -46,39 +29,29 @@ export default function List({todoData, setTodoData}) {
           {(provided) => (
             // Droppable을 사용해서 Droppable에서 주는 정보를 div에 전달. 
             <div {...provided.droppableProps} ref={provided.innerRef}>
-            {todoData.map((data,index) => (
-              <Draggable 
-                key={data.id}
-                draggableId={data.id.toString()}
-                index={index}
-              >    
-              {(provided, snapshot) => (
-                <article 
-                  key={data.id} 
-                  {...provided.draggableProps} 
-                  ref={provided.innerRef}
-                  {...provided.dragHandleProps}
-                  className={`${snapshot.isDragging ? "bg-white": undefined} flex items-center justify-between w-full px-4 py-1 my-2  border-white border-2 rounded`}
-                >
-                    <div className='items-center'>
-                      <input type="checkbox" defaultChecked={false} style={inputStyle} onChange = {() => completedChange(data.id)}/>
-                      <span className= {data.completed ? "line-through" : undefined}>
-                        {data.title}
-                      </span>
-                    </div>
-
-                    <div className='items-center p-2 rounded cursor-pointer hover:bg-red-200'>
-                      <button onClick={() => deleteClick(data.id)}>✖</button>
-                    </div>
-
-
-                </article>
-              )}
-            </Draggable>
-          ))}
-          {/* provide.placeholder는 element를 드래그해서 위로 올릴 수 있게 함.*/}
-          {provided.placeholder}
-          </div>
+              {todoData.map((data,index) => (
+                <Draggable 
+                  key={data.id}
+                  draggableId={data.id.toString()}
+                  index={index}
+                >    
+                  {(provided, snapshot) => (
+                    <Item 
+                      key={data.id}
+                      id={data.id}
+                      title={data.title}
+                      completed={data.completed}
+                      todoData={todoData}
+                      setTodoData={setTodoData}
+                      provided={provided}
+                      snapshot={snapshot}
+                    />
+                  )}
+                </Draggable>
+              ))}
+              {/* provide.placeholder는 element를 드래그해서 위로 올릴 수 있게 함.*/}
+              {provided.placeholder}
+            </div>
           )}
         </Droppable>
       </DragDropContext>
