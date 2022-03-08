@@ -20,5 +20,4 @@
 ### 🍎edit
 * 리스트 수정하기
 
-![edit](https://user-images.githubusercontent.com/48678872/157242583-29fa8845-7e4f-47cf-8aea-8ca71fb5b079.gif)
-
+![edit](https://user-images.githubusercontent.com/48678872/157244728-07943195-1354-47b4-8690-d51bfc847062.gif)
