@@ -20,7 +20,8 @@ const Item = React.memo(({ id, title, completed, todoData, setTodoData, provided
     });
 
     setTodoData(newTodoData);
-    setEditing(false); //...???
+    localStorage.setItem('todoData', JSON.stringify(newTodoData));
+    setEditing(false); //이거 수저하는 폼 false임
   };
 
   //할 일 완료 체크
@@ -32,6 +33,7 @@ const Item = React.memo(({ id, title, completed, todoData, setTodoData, provided
       return data;
     })
     setTodoData(newTodoData);
+    localStorage.setItem('todoData', JSON.stringify(newTodoData));
   };
 
  
@@ -53,11 +55,14 @@ const Item = React.memo(({ id, title, completed, todoData, setTodoData, provided
           </form>
         </div>
         <div>
-          {/* <button
+          <button
             type="button"
             className="p-2 float-right cursor-pointer hover:scale-125"
-            onChange = {() => setEditing(false)}
-          >✖</button> */}
+            onClick = {() => {
+              setEditing(false);
+            }
+            } 
+          >✖</button>
           <button
             type="button"
             className="p-2 float-right cursor-pointer hover:scale-125"

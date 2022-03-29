@@ -5,18 +5,22 @@ import Form from "./components/Form";
 import DeleteAll from "./components/DeleteAll";
 // 주로 최상위 폴더에 함수를 만든다.. 왜??
 
+const initalTodoData = localStorage.getItem("todoData") ? JSON.parse(localStorage.getItem("todoData")) : [];
+
 export default function App() {
-  const [todoData, setTodoData] = useState([]);
+  const [todoData, setTodoData] = useState(initalTodoData);
   const [value, setValue] = useState("");
 
   // todoData가 바뀔때만 다시 생성해줄 수 있게 useCallback
   const deleteClick = useCallback((id) => {
     let newTodoData = todoData.filter(data => id !== data.id);
     setTodoData(newTodoData);
+    localStorage.setItem('todoData', JSON.stringify(newTodoData));
   }, [todoData]);
 
   const deleteAllClick = useCallback(() => {
     setTodoData([]);
+    localStorage.setItem('todoData', JSON.stringify([]));
   }, [todoData]);
 
   const addClick = (e) => {
@@ -28,7 +32,10 @@ export default function App() {
       completed: false
     }
 
-    setTodoData(prev => [...prev, newTodo]);
+    // 원래 있던 할 일에 새로운 할 일 더 해주기
+    setTodoData((prev) => [...prev, newTodo]);
+    localStorage.setItem('todoData', JSON.stringify([...todoData, newTodo]));
+    // 입력칸 초기화
     setValue("")
   }
     return (
